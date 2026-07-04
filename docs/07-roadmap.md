@@ -14,6 +14,7 @@ Diese Roadmap beschreibt einen pragmatischen Aufbau vom dokumentierten Excel-Ver
 - Referenzszenario fuer das erste Prisma-Datenmodell festlegen.
 - Referenzszenario fachlich gegen Excel-Beispiele validieren.
 - Erste fachliche Prisma-Modelle und Migrationen anlegen.
+- RuleSet, RuleCheckResult und SimulationRun nach Stabilisierung der Result-Formate ergaenzen.
 - Rule-Result-Format definieren.
 - Wellenregeln implementieren.
 - Bahnregeln implementieren.

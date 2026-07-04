@@ -6,3 +6,240 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum EventStatus {
+  DRAFT
+  PLANNING
+  APPROVED
+  ARCHIVED
+}
+
+enum ParticipantKind {
+  INDIVIDUAL
+  RELAY
+}
+
+enum ParticipantStatus {
+  REGISTERED
+  DNS
+  WITHDRAWN
+}
+
+enum ScenarioStatus {
+  DRAFT
+  REVIEW
+  APPROVED
+  ARCHIVED
+}
+
+enum LaneStatus {
+  AVAILABLE
+  RESERVED
+  BLOCKED
+}
+
+enum AssignmentSource {
+  AUTOMATIC
+  MANUAL
+  IMPORT
+}
+
+enum ImportStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum OverrideScope {
+  EVENT
+  SCENARIO
+  PARTICIPANT
+  START_GROUP
+  WAVE
+  LANE
+  LANE_ASSIGNMENT
+}
+
+model Event {
+  id                String             @id @default(cuid())
+  name              String
+  eventDate         DateTime
+  location          String?
+  status            EventStatus        @default(DRAFT)
+  startWindowStart  DateTime?
+  startWindowEnd    DateTime?
+  configuration     Json?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  importBatches     ImportBatch[]
+  lanes             Lane[]
+  manualOverrides   ManualOverride[]
+  participants      Participant[]
+  planningScenarios PlanningScenario[]
+  startGroups       StartGroup[]
+
+  @@index([eventDate])
+  @@index([status])
+}
+
+model Participant {
+  id              String            @id @default(cuid())
+  eventId         String
+  importBatchId   String?
+  startGroupId    String?
+  externalId      String?
+  firstName       String?
+  lastName        String?
+  displayName     String
+  kind            ParticipantKind   @default(INDIVIDUAL)
+  status          ParticipantStatus @default(REGISTERED)
+  category        String?
+  distance        String?
+  metadata        Json?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  event           Event             @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  importBatch     ImportBatch?      @relation(fields: [importBatchId], references: [id], onDelete: SetNull)
+  laneAssignments LaneAssignment[]
+  startGroup      StartGroup?       @relation(fields: [startGroupId], references: [id], onDelete: SetNull)
+
+  @@unique([eventId, externalId])
+  @@index([eventId])
+  @@index([startGroupId])
+}
+
+model StartGroup {
+  id              String           @id @default(cuid())
+  eventId         String
+  code            String
+  name            String
+  category        String?
+  distance        String?
+  sortOrder       Int              @default(0)
+  metadata        Json?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  laneAssignments LaneAssignment[]
+  participants    Participant[]
+
+  @@unique([eventId, code])
+  @@index([eventId])
+}
+
+model PlanningScenario {
+  id              String           @id @default(cuid())
+  eventId         String
+  name            String
+  status          ScenarioStatus   @default(DRAFT)
+  version         Int              @default(1)
+  lockedAt        DateTime?
+  approvedAt      DateTime?
+  notes           String?
+  snapshot        Json?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  manualOverrides ManualOverride[]
+  waves           Wave[]
+
+  @@unique([eventId, name, version])
+  @@index([eventId])
+  @@index([status])
+}
+
+model Wave {
+  id                 String           @id @default(cuid())
+  planningScenarioId String
+  code               String
+  name               String?
+  plannedStartTime   DateTime?
+  expectedStarts     Int?
+  maxStarts          Int?
+  sortOrder          Int              @default(0)
+  metadata           Json?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  laneAssignments    LaneAssignment[]
+  planningScenario   PlanningScenario @relation(fields: [planningScenarioId], references: [id], onDelete: Cascade)
+
+  @@unique([planningScenarioId, code])
+  @@index([planningScenarioId])
+}
+
+model Lane {
+  id              String           @id @default(cuid())
+  eventId         String
+  number          Int
+  name            String?
+  status          LaneStatus       @default(AVAILABLE)
+  maxStarts       Int?
+  metadata        Json?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  laneAssignments LaneAssignment[]
+
+  @@unique([eventId, number])
+  @@index([eventId])
+}
+
+model LaneAssignment {
+  id            String           @id @default(cuid())
+  waveId        String
+  laneId        String
+  participantId String?
+  startGroupId  String?
+  source        AssignmentSource @default(AUTOMATIC)
+  position      Int?
+  notes         String?
+  metadata      Json?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  lane          Lane             @relation(fields: [laneId], references: [id], onDelete: Restrict)
+  participant   Participant?     @relation(fields: [participantId], references: [id], onDelete: SetNull)
+  startGroup    StartGroup?      @relation(fields: [startGroupId], references: [id], onDelete: SetNull)
+  wave          Wave             @relation(fields: [waveId], references: [id], onDelete: Cascade)
+
+  @@index([laneId])
+  @@index([participantId])
+  @@index([startGroupId])
+  @@index([waveId])
+}
+
+model ImportBatch {
+  id           String        @id @default(cuid())
+  eventId      String
+  sourceName   String
+  sourceType   String
+  status       ImportStatus  @default(PENDING)
+  importedAt   DateTime?
+  summary      Json?
+  errorDetails Json?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  event        Event         @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  participants Participant[]
+
+  @@index([eventId])
+  @@index([status])
+}
+
+model ManualOverride {
+  id                 String            @id @default(cuid())
+  eventId            String
+  planningScenarioId String?
+  scope              OverrideScope
+  targetId           String
+  reason             String
+  authorName         String?
+  context            Json?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+  event              Event             @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  planningScenario   PlanningScenario? @relation(fields: [planningScenarioId], references: [id], onDelete: SetNull)
+
+  @@index([eventId])
+  @@index([planningScenarioId])
+  @@index([scope, targetId])
+}
