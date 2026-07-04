@@ -1,0 +1,29 @@
+{
+  "name": "race-planning-cockpit",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @race-planning-cockpit/web",
+    "build": "npm run build --workspace @race-planning-cockpit/web",
+    "lint": "npm run lint --workspace @race-planning-cockpit/web",
+    "typecheck": "npm run typecheck --workspace @race-planning-cockpit/web",
+    "test": "npm run test --workspaces --if-present",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "engines": {
+    "node": ">=20.11.0",
+    "npm": ">=10.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.0",
+    "typescript": "^5.0.0"
+  }
+}

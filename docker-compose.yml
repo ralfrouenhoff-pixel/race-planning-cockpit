@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: race-planning-cockpit-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: race_planning
+      POSTGRES_PASSWORD: race_planning
+      POSTGRES_DB: race_planning_cockpit
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U race_planning -d race_planning_cockpit"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:
