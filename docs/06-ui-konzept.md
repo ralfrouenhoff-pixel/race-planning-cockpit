@@ -18,6 +18,20 @@ Die UI des Race Planning Cockpits soll komplexe Planungslogik sichtbar und korri
 - Simulation mit Szenariovergleich.
 - Review-Ansicht fuer Freigabe, Export und Audit.
 
+## Sprint-1-Shell
+
+Die erste UI-Struktur enthaelt Platzhalterseiten fuer:
+
+- Overview
+- Events
+- Scenarios
+- Participants
+- Waves
+- Lanes
+- Simulation
+
+Diese Seiten verwenden statische Referenzdaten aus der Dokumentation. Sie enthalten noch keine Datenbankabfragen, keine Rule Engine und keine Simulation.
+
 ## Bedienprinzipien
 
 - Regelverletzungen werden direkt am betroffenen Objekt angezeigt.

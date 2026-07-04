@@ -1,37 +1,47 @@
-const foundationItems = [
-  "Next.js 15",
-  "TypeScript",
-  "Tailwind",
-  "Prisma",
-  "PostgreSQL",
-  "Docker",
+import { AppShell } from "@/components/app-shell";
+import { StatusTable } from "@/components/status-table";
+import { workspaceSections } from "@/lib/workspace";
+
+const overviewMetrics = [
+  { label: "Events", value: "1", detail: "Draft" },
+  { label: "Scenarios", value: "1", detail: "Initial Draft" },
+  { label: "Participants", value: "54", detail: "Reference scope" },
+  { label: "Lanes", value: "6", detail: "Available" },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-cockpit-surface text-cockpit-ink">
-      <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-12">
-        <p className="text-sm font-semibold uppercase tracking-wide text-cockpit-accent">
-          Sprint 1 Foundation
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
-          Race Planning Cockpit
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
-          Technical basis for a planning and simulation platform for
-          pool-based multisport events.
-        </p>
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {foundationItems.map((item) => (
-            <div
-              className="border border-cockpit-line bg-white px-4 py-3 text-sm font-medium"
-              key={item}
-            >
-              {item}
+    <AppShell activePath="/">
+      <section className="space-y-8">
+        <div>
+          <p className="text-sm font-semibold uppercase text-cockpit-accent">
+            Sprint 1
+          </p>
+          <h1 className="mt-2 text-3xl font-semibold tracking-normal md:text-4xl">
+            Race Planning Cockpit
+          </h1>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-4">
+          {overviewMetrics.map((metric) => (
+            <div className="border border-cockpit-line bg-white p-4" key={metric.label}>
+              <div className="text-sm text-slate-600">{metric.label}</div>
+              <div className="mt-2 text-3xl font-semibold">{metric.value}</div>
+              <div className="mt-1 text-sm text-slate-500">{metric.detail}</div>
             </div>
           ))}
         </div>
+
+        <StatusTable
+          columns={["Area", "State", "Next"]}
+          rows={workspaceSections.map((section) => [
+            section.label,
+            section.state,
+            section.next,
+          ])}
+          title="Workspace"
+        />
       </section>
-    </main>
+    </AppShell>
   );
 }
