@@ -10,7 +10,7 @@
     "dev": "npm run dev --workspace @race-planning-cockpit/web",
     "build": "npm run build --workspace @race-planning-cockpit/web",
     "lint": "npm run lint --workspace @race-planning-cockpit/web",
-    "typecheck": "npm run typecheck --workspace @race-planning-cockpit/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",

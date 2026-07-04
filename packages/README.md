@@ -9,3 +9,7 @@ Geplante Bereiche:
 - Simulation Engine.
 - Gemeinsame UI-Bausteine.
 - Test Fixtures und Excel-Regressionsdaten.
+
+Aktueller Stand:
+
+- `domain/` enthaelt gemeinsame TypeScript-Contracts ohne Businesslogik.
