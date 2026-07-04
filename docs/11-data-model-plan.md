@@ -166,4 +166,4 @@ Geplante Beziehungen:
 
 ## Naechster Schritt
 
-Vor der ersten Migration sollte ein Beispiel-Event als fachliches Referenzszenario dokumentiert werden. Daraus werden Pflichtfelder, Kardinalitaeten und erste Prisma-Modelle abgeleitet.
+Vor der ersten Migration sollte das Referenzszenario in `docs/12-reference-scenario.md` fachlich geprueft werden. Daraus werden Pflichtfelder, Kardinalitaeten und erste Prisma-Modelle abgeleitet.
