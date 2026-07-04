@@ -10,3 +10,5 @@ Geplante Testarten:
 - E2E-Tests fuer kritische UI-Workflows.
 
 In Sprint 1 werden noch keine fachlichen Tests implementiert.
+
+Die Fixture-Strategie liegt in `docs/14-fixture-and-seed-strategy.md`.

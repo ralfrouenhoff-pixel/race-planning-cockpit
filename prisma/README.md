@@ -7,3 +7,5 @@ Sprint 1 richtet Prisma nur technisch ein. Fachliche Modelle fuer Events, Wellen
 Die fachliche Planung fuer das erste Datenmodell liegt in `docs/11-data-model-plan.md`.
 
 Die erste Prisma-Schema-Version ist in `docs/13-prisma-schema-v1.md` dokumentiert.
+
+Seed-Daten werden erst nach lokaler Migration umgesetzt. Die Strategie liegt in `docs/14-fixture-and-seed-strategy.md`.
