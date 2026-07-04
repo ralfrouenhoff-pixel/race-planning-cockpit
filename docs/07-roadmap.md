@@ -11,6 +11,8 @@ Diese Roadmap beschreibt einen pragmatischen Aufbau vom dokumentierten Excel-Ver
 
 ## Phase 2: Rule Engine MVP
 
+- Referenzszenario fuer das erste Prisma-Datenmodell festlegen.
+- Erste fachliche Prisma-Modelle und Migrationen anlegen.
 - Rule-Result-Format definieren.
 - Wellenregeln implementieren.
 - Bahnregeln implementieren.
