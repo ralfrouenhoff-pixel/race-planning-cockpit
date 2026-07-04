@@ -41,5 +41,7 @@ Diese Bereiche folgen erst, wenn Result-Formate, Nutzerrollen und Excel-Regeln s
 ## Technische Hinweise
 
 - Das Schema ist fuer PostgreSQL vorbereitet.
-- Migrationen sollten erst erzeugt werden, wenn eine lokale oder CI-Datenbank verbindlich verfuegbar ist.
+- Die initiale SQL-Migration liegt unter `prisma/migrations/20260704120000_init_data_model/migration.sql`.
+- Die Migration wurde per `prisma migrate diff` aus dem Schema erzeugt.
+- Sie wurde noch nicht gegen eine laufende PostgreSQL-Datenbank angewendet, weil Docker in der aktuellen Umgebung nicht verfuegbar ist.
 - `prisma format` und `prisma generate` muessen fuer jede Schema-Aenderung gruen bleiben.

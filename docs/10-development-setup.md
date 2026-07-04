@@ -27,7 +27,11 @@ npm run docker:up
 npm run db:generate
 ```
 
-Migrationen werden angelegt, sobald das erste fachliche Datenmodell beschlossen ist.
+Die initiale Migration liegt bereits unter `prisma/migrations/20260704120000_init_data_model/migration.sql`.
+
+```bash
+npm run db:migrate
+```
 
 ## Web-App starten
 
