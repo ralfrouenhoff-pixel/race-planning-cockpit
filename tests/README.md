@@ -12,3 +12,5 @@ Geplante Testarten:
 In Sprint 1 werden noch keine fachlichen Tests implementiert.
 
 Die Fixture-Strategie liegt in `docs/14-fixture-and-seed-strategy.md`.
+
+Die Fixtures werden ueber `tests/tsconfig.json` typgeprueft.

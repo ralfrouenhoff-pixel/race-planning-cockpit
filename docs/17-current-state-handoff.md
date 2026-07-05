@@ -132,13 +132,13 @@ Noch nicht implementiert:
 
 ## Empfohlener naechster Schritt
 
-Als naechstes sollten Edge-Case-Fixtures angelegt werden:
+Als naechstes sollten Rule-Result-Contracts vorbereitet werden:
 
-1. `tests/fixtures/edge-cases/` mit isolierten Faellen fuellen.
-2. Fehlende Kategorie, DNS, Nachmeldung, blockierte Bahn und Override getrennt dokumentieren.
-3. UI oder Tests erst danach gezielt auf diese Edge Cases beziehen.
+1. Status, Severity, Rule-Kennung und betroffene Entitaeten als Domain-Contract definieren.
+2. Noch keine Rule Engine implementieren.
+3. Edge-Case-Fixtures spaeter mit erwarteten Rule-Ergebnissen ergaenzen.
 
-Grund: Das Referenzszenario ist nun typisiert vorhanden. Die naechste Qualitaetsstufe sind kleine, isolierte Grenzfall-Daten.
+Grund: Referenz- und Edge-Case-Fixtures sind nun typisiert vorhanden. Die naechste Qualitaetsstufe ist ein stabiler Ergebnis-Contract, bevor Regeln berechnet werden.
 
 ## Alternative naechste Arbeit
 

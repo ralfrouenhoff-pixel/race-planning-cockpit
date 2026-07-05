@@ -34,6 +34,8 @@ Ein Seed schreibt Daten in eine lokale Entwicklungsdatenbank. Seeds werden erst 
 
 Die erste typisierte Referenzfixture liegt in `tests/fixtures/reference-scenario/index.ts`.
 Die Details sind in `docs/18-reference-fixtures.md` dokumentiert.
+Die ersten typisierten Edge-Case-Fixtures liegen in `tests/fixtures/edge-cases/index.ts`.
+Die Details sind in `docs/19-edge-case-fixtures.md` dokumentiert.
 
 ## Fixture-Schichten
 
@@ -67,12 +69,11 @@ Enthaelt:
 
 Zweck: einzelne fachliche Risiken isoliert pruefen.
 
-Geplante Faelle:
+Angelegte Faelle:
 
 - fehlende Kategorie
 - Nachmeldung nach initialer Planung
 - DNS nach Bahnzuweisung
-- ueberfuellte Welle
 - blockierte Bahn
 - manueller Override mit Begruendung
 
