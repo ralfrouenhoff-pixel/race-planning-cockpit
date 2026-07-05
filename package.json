@@ -14,16 +14,24 @@
     "test": "npm run test --workspaces --if-present",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
+    "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed/index.ts"
   },
   "engines": {
     "node": ">=20.11.0",
     "npm": ">=10.0.0"
   },
+  "dependencies": {
+    "@prisma/client": "^6.0.0"
+  },
   "devDependencies": {
     "prisma": "^6.0.0",
+    "tsx": "^4.19.0",
     "typescript": "^5.0.0"
   }
 }

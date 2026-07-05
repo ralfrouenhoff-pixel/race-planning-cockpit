@@ -1,8 +1,10 @@
 import { AppShell } from "@/components/app-shell";
 import { StatusTable } from "@/components/status-table";
-import { participantRows } from "@/lib/reference-scenario-view";
+import { getParticipantRows } from "@/lib/participants";
 
-export default function ParticipantsPage() {
+export default async function ParticipantsPage() {
+  const participantRows = await getParticipantRows();
+
   return (
     <AppShell activePath="/participants">
       <StatusTable

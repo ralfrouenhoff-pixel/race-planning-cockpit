@@ -60,6 +60,12 @@ enum OverrideScope {
   LANE_ASSIGNMENT
 }
 
+enum RuleSetStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
 model Event {
   id                String             @id @default(cuid())
   name              String
@@ -76,6 +82,7 @@ model Event {
   manualOverrides   ManualOverride[]
   participants      Participant[]
   planningScenarios PlanningScenario[]
+  ruleSets          RuleSet[]
   startGroups       StartGroup[]
 
   @@index([eventDate])
@@ -130,6 +137,7 @@ model StartGroup {
 model PlanningScenario {
   id              String           @id @default(cuid())
   eventId         String
+  ruleSetId       String?
   name            String
   status          ScenarioStatus   @default(DRAFT)
   version         Int              @default(1)
@@ -141,7 +149,28 @@ model PlanningScenario {
   updatedAt       DateTime         @updatedAt
   event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
   manualOverrides ManualOverride[]
+  ruleSet         RuleSet?         @relation(fields: [ruleSetId], references: [id], onDelete: SetNull)
   waves           Wave[]
+
+  @@unique([eventId, name, version])
+  @@index([eventId])
+  @@index([status])
+  @@index([ruleSetId])
+}
+
+model RuleSet {
+  id                String             @id @default(cuid())
+  eventId           String?
+  name              String
+  version           Int                @default(1)
+  status            RuleSetStatus      @default(DRAFT)
+  parameters        Json
+  waveCriteria      Json
+  laneCriteria      Json
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  event             Event?             @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  planningScenarios PlanningScenario[]
 
   @@unique([eventId, name, version])
   @@index([eventId])

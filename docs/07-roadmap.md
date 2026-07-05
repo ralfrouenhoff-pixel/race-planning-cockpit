@@ -28,6 +28,7 @@ Diese Roadmap beschreibt einen pragmatischen Aufbau vom dokumentierten Excel-Ver
 - Simulation fuer Standardplanung implementieren.
 - Engpass- und Konfliktkennzahlen berechnen.
 - Vergleich mehrerer Szenarien vorbereiten.
+- Wellen-Optimierung: Pruefen, ob hoehere Bahnkapazitaet eine Welle einspart (manueller Vorschlag, kein Automatismus, siehe `docs/18-real-world-lane-rules.md` Abschnitt 6).
 
 ## Phase 4: UI-Prototyp
 

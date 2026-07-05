@@ -32,6 +32,12 @@ export const overrideScopes = [
 ] as const;
 export type OverrideScope = (typeof overrideScopes)[number];
 
+export const ruleSetStatuses = ["DRAFT", "ACTIVE", "ARCHIVED"] as const;
+export type RuleSetStatus = (typeof ruleSetStatuses)[number];
+
+export const sortDirections = ["ASC", "DESC"] as const;
+export type SortDirection = (typeof sortDirections)[number];
+
 export const ruleResultStatuses = ["PASS", "WARNING", "FAIL"] as const;
 export type RuleResultStatus = (typeof ruleResultStatuses)[number];
 
@@ -68,6 +74,43 @@ export type RuleCheckResultContract = {
 export type RuleEvaluationContract = {
   snapshotId: DomainId;
   results: RuleCheckResultContract[];
+};
+
+export type GroupingCriterionContract = {
+  field: string;
+  enabled: boolean;
+};
+
+export type SortingCriterionContract = {
+  field: string;
+  direction: SortDirection;
+  enabled: boolean;
+};
+
+export type CriteriaPipelineContract = {
+  grouping: GroupingCriterionContract[];
+  sorting: SortingCriterionContract[];
+};
+
+export type LaneCapacityContract = {
+  value: number;
+  allowedMax: number;
+};
+
+export type RuleSetParametersContract = {
+  laneCapacity: LaneCapacityContract;
+  breakBetweenWavesMinutes: number;
+};
+
+export type RuleSetContract = {
+  id: DomainId;
+  eventId?: DomainId;
+  name: string;
+  version: number;
+  status: RuleSetStatus;
+  parameters: RuleSetParametersContract;
+  waveCriteria: CriteriaPipelineContract;
+  laneCriteria: CriteriaPipelineContract;
 };
 
 export type EventContract = {
@@ -116,6 +159,7 @@ export type LaneContract = {
 export type PlanningScenarioContract = {
   id: DomainId;
   eventId: DomainId;
+  ruleSetId?: DomainId;
   name: string;
   status: ScenarioStatus;
   version: number;
@@ -158,6 +202,7 @@ export type ManualOverrideContract = {
 export type PlanningSnapshotContract = {
   event: EventContract;
   scenario: PlanningScenarioContract;
+  ruleSet?: RuleSetContract;
   participants: ParticipantContract[];
   startGroups: StartGroupContract[];
   lanes: LaneContract[];
