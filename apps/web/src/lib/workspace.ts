@@ -9,10 +9,10 @@ export const navigationItems = [
 ];
 
 export const workspaceSections = [
-  { label: "Events", state: "Prepared", next: "Connect Prisma reads" },
+  { label: "Events", state: "Fixture-backed", next: "Connect Prisma reads" },
   { label: "Scenarios", state: "Prepared", next: "Add scenario detail view" },
-  { label: "Participants", state: "Prepared", next: "Add fixture-backed list" },
-  { label: "Waves", state: "Prepared", next: "Add lane assignments" },
-  { label: "Lanes", state: "Prepared", next: "Add occupancy view" },
+  { label: "Participants", state: "Fixture-backed", next: "Add participant detail view" },
+  { label: "Waves", state: "Fixture-backed", next: "Add lane assignments" },
+  { label: "Lanes", state: "Fixture-backed", next: "Add occupancy view" },
   { label: "Simulation", state: "Deferred", next: "Define result contract" },
 ];

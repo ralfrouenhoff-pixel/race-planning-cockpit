@@ -1,6 +1,7 @@
 export type {
   AssignmentSource,
   DomainId,
+  EventContract,
   EventStatus,
   ImportStatus,
   LaneAssignmentContract,

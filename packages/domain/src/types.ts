@@ -32,6 +32,16 @@ export const overrideScopes = [
 ] as const;
 export type OverrideScope = (typeof overrideScopes)[number];
 
+export type EventContract = {
+  id: DomainId;
+  name: string;
+  eventDate: string;
+  location?: string;
+  status: EventStatus;
+  startWindowStart?: string;
+  startWindowEnd?: string;
+};
+
 export type ParticipantContract = {
   id: DomainId;
   eventId: DomainId;
@@ -108,6 +118,7 @@ export type ManualOverrideContract = {
 };
 
 export type PlanningSnapshotContract = {
+  event: EventContract;
   scenario: PlanningScenarioContract;
   participants: ParticipantContract[];
   startGroups: StartGroupContract[];

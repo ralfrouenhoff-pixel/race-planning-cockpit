@@ -30,6 +30,11 @@ Ein Seed schreibt Daten in eine lokale Entwicklungsdatenbank. Seeds werden erst 
 - `prisma/seed/`: spaeterer Prisma-Seed-Code.
 - `analysis/excel-analysis/samples/`: spaetere anonymisierte Excel- oder CSV-Beispiele.
 
+## Aktueller Stand
+
+Die erste typisierte Referenzfixture liegt in `tests/fixtures/reference-scenario/index.ts`.
+Die Details sind in `docs/18-reference-fixtures.md` dokumentiert.
+
 ## Fixture-Schichten
 
 ### Minimal Fixture

@@ -1,13 +1,7 @@
 import { AppShell } from "@/components/app-shell";
 import { StatusTable } from "@/components/status-table";
+import { overviewMetrics } from "@/lib/reference-scenario-view";
 import { workspaceSections } from "@/lib/workspace";
-
-const overviewMetrics = [
-  { label: "Events", value: "1", detail: "Draft" },
-  { label: "Scenarios", value: "1", detail: "Initial Draft" },
-  { label: "Participants", value: "54", detail: "Reference scope" },
-  { label: "Lanes", value: "6", detail: "Available" },
-];
 
 export default function Home() {
   return (

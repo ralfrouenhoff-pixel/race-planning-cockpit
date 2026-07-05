@@ -1,6 +1,6 @@
 # Current State Handoff
 
-Stand: 2026-07-04
+Stand: 2026-07-05
 
 Dieses Dokument speichert den aktuellen Projektstand, damit die Arbeit spaeter ohne erneute Orientierung fortgesetzt werden kann.
 
@@ -100,7 +100,7 @@ Vorhanden:
   - `/lanes`
   - `/simulation`
 
-Die UI nutzt statische lokale Daten. Es gibt noch keine Datenbankanbindung.
+Die UI nutzt typisierte Referenzfixture-Daten. Es gibt noch keine Datenbankanbindung.
 
 ## Validierung
 
@@ -128,18 +128,17 @@ Noch nicht implementiert:
 - Authentifizierung
 - Rollenmodell
 - echte Seed-Daten
-- produktive Fixtures
+- Edge-Case-Fixtures
 
 ## Empfohlener naechster Schritt
 
-Als naechstes sollten die Referenzdaten als typisierte Fixtures angelegt werden:
+Als naechstes sollten Edge-Case-Fixtures angelegt werden:
 
-1. `tests/fixtures/reference-scenario/` mit Daten fuellen.
-2. Fixtures gegen `@race-planning-cockpit/domain` typisieren.
-3. UI-Seiten von lokalen Page-Arrays auf Fixture-Daten umstellen.
-4. Danach aus denselben Daten spaeter Prisma-Seed-Daten ableiten.
+1. `tests/fixtures/edge-cases/` mit isolierten Faellen fuellen.
+2. Fehlende Kategorie, DNS, Nachmeldung, blockierte Bahn und Override getrennt dokumentieren.
+3. UI oder Tests erst danach gezielt auf diese Edge Cases beziehen.
 
-Grund: So entsteht eine wiederverwendbare Datenbasis fuer UI, Tests und spaeteren Seed, ohne bereits Datenbankinfrastruktur oder Businesslogik zu erzwingen.
+Grund: Das Referenzszenario ist nun typisiert vorhanden. Die naechste Qualitaetsstufe sind kleine, isolierte Grenzfall-Daten.
 
 ## Alternative naechste Arbeit
 
