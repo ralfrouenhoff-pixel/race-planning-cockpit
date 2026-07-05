@@ -13,10 +13,12 @@ Die Rule Engine ist die fachliche Entscheidungsschicht des Race Planning Cockpit
 
 Jede Regel wird als isolierte, testbare Einheit modelliert. Eine Regel erhaelt einen Planungs-Snapshot und liefert ein strukturiertes Ergebnis:
 
-- Status: `pass`, `warning` oder `fail`
+- Status: `PASS`, `WARNING` oder `FAIL`
 - Betroffene Objekte: Welle, Bahn, Teilnehmergruppe oder Event
 - Begruendung: fachlicher Text fuer UI und Audit
 - Schweregrad: Hinweis, blockierender Fehler oder Planungsrisiko
+
+Die ersten Rule-Result-Contracts sind in `docs/20-rule-result-contracts.md` dokumentiert.
 
 ## Regelbereiche
 
@@ -36,6 +38,6 @@ Jede Regel wird als isolierte, testbare Einheit modelliert. Eine Regel erhaelt e
 ## Naechste Schritte
 
 - Excel-Regeln aus `analysis/excel-analysis/` katalogisieren.
-- Minimales Rule-Result-Format definieren.
+- Minimalen Rule-Engine-Package-Schnitt definieren.
 - Erste Unit Tests fuer Wellen- und Bahnregeln erstellen.
 - Beispiel-Szenario mit Regelverletzungen dokumentieren.

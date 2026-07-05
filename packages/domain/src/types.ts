@@ -32,6 +32,44 @@ export const overrideScopes = [
 ] as const;
 export type OverrideScope = (typeof overrideScopes)[number];
 
+export const ruleResultStatuses = ["PASS", "WARNING", "FAIL"] as const;
+export type RuleResultStatus = (typeof ruleResultStatuses)[number];
+
+export const ruleSeverityLevels = ["INFO", "WARNING", "BLOCKING"] as const;
+export type RuleSeverityLevel = (typeof ruleSeverityLevels)[number];
+
+export const ruleTargetTypes = [
+  "EVENT",
+  "SCENARIO",
+  "PARTICIPANT",
+  "START_GROUP",
+  "WAVE",
+  "LANE",
+  "LANE_ASSIGNMENT",
+  "MANUAL_OVERRIDE",
+] as const;
+export type RuleTargetType = (typeof ruleTargetTypes)[number];
+
+export type RuleTargetContract = {
+  type: RuleTargetType;
+  id: DomainId;
+};
+
+export type RuleCheckResultContract = {
+  id: DomainId;
+  ruleId: string;
+  ruleName: string;
+  status: RuleResultStatus;
+  severity: RuleSeverityLevel;
+  message: string;
+  targets: RuleTargetContract[];
+};
+
+export type RuleEvaluationContract = {
+  snapshotId: DomainId;
+  results: RuleCheckResultContract[];
+};
+
 export type EventContract = {
   id: DomainId;
   name: string;

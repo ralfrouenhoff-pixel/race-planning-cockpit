@@ -18,11 +18,12 @@ Enthaltene Faelle:
 
 Die Edge-Case-Fixtures sind bewusst klein und isoliert. Jede Fixture beschreibt genau einen Modellzustand, der spaeter von Rule Engine, UI und Tests bewertet werden kann.
 
+Jede Fixture enthaelt zusaetzlich `expectedRuleResults`. Diese Ergebnisse sind Contract-Beispiele und werden noch nicht berechnet.
+
 ## Abgrenzung
 
 Nicht enthalten:
 
-- Rule-Erwartungswerte
 - Simulationsergebnisse
 - UI-spezifische Assertions
 - Datenbank-Seeding

@@ -134,11 +134,15 @@ Noch nicht implementiert:
 
 Als naechstes sollten Rule-Result-Contracts vorbereitet werden:
 
-1. Status, Severity, Rule-Kennung und betroffene Entitaeten als Domain-Contract definieren.
-2. Noch keine Rule Engine implementieren.
-3. Edge-Case-Fixtures spaeter mit erwarteten Rule-Ergebnissen ergaenzen.
+Dieser Schritt ist erledigt. Die Contracts liegen im Domain-Package und sind in `docs/20-rule-result-contracts.md` dokumentiert.
 
-Grund: Referenz- und Edge-Case-Fixtures sind nun typisiert vorhanden. Die naechste Qualitaetsstufe ist ein stabiler Ergebnis-Contract, bevor Regeln berechnet werden.
+Als naechstes sollte ein Rule-Engine-Package-Schnitt vorbereitet werden:
+
+1. `packages/rules` anlegen.
+2. Nur Schnittstellen und Test-Harness vorbereiten.
+3. Noch keine fachlichen Regeln berechnen.
+
+Grund: Referenz- und Edge-Case-Fixtures sowie Rule-Result-Contracts sind nun typisiert vorhanden. Die naechste Qualitaetsstufe ist ein sauberer Package-Zuschnitt fuer spaetere pure Rule-Funktionen.
 
 ## Alternative naechste Arbeit
 
